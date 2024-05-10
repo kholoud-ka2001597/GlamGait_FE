@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String        @id @default(cuid())
+  username     String
+  password     String
+  type         UserType
+  firstName    String
+  lastName     String
+  wallet       String        @default("0")
+  products     Product[]
+  transactions Transaction[]
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  image       String
+  rating      Int
+  price       String
+  description String
+  sellerId    String
+  quantity    Int
+  type        String
+  createdAt   DateTime @default(now())
+  seller      User     @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+}
+
+model Transaction {
+  id               String   @id @default(cuid())
+  metadata         Json[]
+  sellerIds        String[]
+  buyerId          String
+  transactionTime  DateTime
+  transactionPrice Int
+  buyer            User     @relation(fields: [buyerId], references: [id], onDelete: Cascade)
+}
+
+enum UserType {
+  seller
+  buyer
+  admin
+}

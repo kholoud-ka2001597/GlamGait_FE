@@ -1,0 +1,25 @@
+{
+  "name": "glamgait",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.13.0",
+    "axios": "^1.6.8",
+    "formidable": "^3.5.1",
+    "next": "14.2.3",
+    "react": "^18",
+    "react-dom": "^18",
+    "recharts": "^2.12.6"
+  },
+  "devDependencies": {
+    "postcss": "^8",
+    "prisma": "^5.13.0",
+    "tailwindcss": "^3.4.1"
+  }
+}
